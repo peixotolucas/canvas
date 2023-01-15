@@ -167,7 +167,8 @@ function animate() {
     enemy.isAttacking
     ) {
     enemy.isAttacking = false
-    console.log('Enemy POW')
+    player.health -= 20
+    document.querySelector('#playerHealth').style.width = player.health + '%'
   }
 }
 
