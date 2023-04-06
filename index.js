@@ -121,6 +121,41 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   )
 }
 
+function determineWinner({player, enemy}) {
+  if (player.health === enemy.health) {
+    document.querySelector('#displayText').innerHTML = 'Tie'
+  } else if (player.health > enemy.health) {
+    document.querySelector('#displayText').innerHTML = 'Player 1 WINS'
+  } else if (player.health < enemy.health) {
+    document.querySelector('#displayText').innerHTML = 'Player 2 WINS'
+
+  }
+}
+
+let timer = 30
+function decreaseTimer() {
+  if (timer > 0) {
+    setTimeout(decreaseTimer, 1000)
+    timer--
+    document.querySelector('#timer').innerHTML = timer
+  }
+
+  if (timer === 0) {
+      document.querySelector('#displayText').style.display = 'flex'
+
+    if (player.health === enemy.health) {
+      document.querySelector('#displayText').innerHTML = 'Tie'
+    } else if (player.health > enemy.health) {
+      document.querySelector('#displayText').innerHTML = 'Player 1 WINS'
+    } else if (player.health < enemy.health) {
+      document.querySelector('#displayText').innerHTML = 'Player 2 WINS'
+
+    }
+  }
+}
+
+decreaseTimer();
+
 function animate() {
   window.requestAnimationFrame(animate)
   c.fillStyle = 'black'
@@ -169,6 +204,11 @@ function animate() {
     enemy.isAttacking = false
     player.health -= 20
     document.querySelector('#playerHealth').style.width = player.health + '%'
+  }
+
+  //end game based on KO
+  if (enemy.health <= 0 || player.health <= 0) {
+
   }
 }
 
