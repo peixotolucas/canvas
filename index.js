@@ -208,7 +208,7 @@ function animate() {
 
   //end game based on KO
   if (enemy.health <= 0 || player.health <= 0) {
-
+    timer = 0
   }
 }
 
